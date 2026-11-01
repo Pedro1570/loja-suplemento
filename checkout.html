@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar pedido — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="container">
+  <h1 style="font-family:var(--fonte-display);font-size:1.5rem;margin:30px 0 0">Finalizar pedido</h1>
+</div>
+
+<div class="container pagina-checkout">
+  <form id="form-checkout">
+    <div id="mensagem-checkout"></div>
+
+    <div class="bloco-form" id="bloco-visitante">
+      <h3><span class="num">1</span> Seus dados</h3>
+      <div class="linha-form duas">
+        <div class="grupo-form"><label>Nome completo *</label><input type="text" name="nome" required></div>
+        <div class="grupo-form"><label>E-mail *</label><input type="email" name="email" required></div>
+      </div>
+      <div class="linha-form duas">
+        <div class="grupo-form"><label>Telefone *</label><input type="tel" name="telefone" required placeholder="(00) 00000-0000"></div>
+        <div class="grupo-form"><label>CPF</label><input type="text" name="cpf" placeholder="000.000.000-00"></div>
+      </div>
+    </div>
+
+    <div class="bloco-form">
+      <h3><span class="num">2</span> Como você quer receber?</h3>
+      <div class="opcoes-recebimento" id="opcoes-recebimento">
+        <label class="opcao-card selecionada" data-tipo="retirada">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <div><strong>Retirar na loja</strong><span>Sem taxa de entrega</span></div>
+          <input type="radio" name="tipoRecebimento" value="retirada" checked style="display:none">
+        </label>
+        <label class="opcao-card" data-tipo="entrega">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8Z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div><strong>Entrega</strong><span>Receba no seu endereço</span></div>
+          <input type="radio" name="tipoRecebimento" value="entrega" style="display:none">
+        </label>
+      </div>
+
+      <div id="info-retirada" class="info-retirada">
+        <strong>Endereço da loja:</strong> <span id="txt-endereco-loja">—</span><br>
+        <strong>Horário:</strong> <span id="txt-horario-loja">—</span><br>
+        <strong>Prazo estimado:</strong> pronto para retirada em algumas horas após a aprovação do pagamento.
+      </div>
+
+      <div id="campos-entrega" class="hidden mt-2">
+        <div class="linha-form tres">
+          <div class="grupo-form"><label>CEP *</label><input type="text" name="cep"></div>
+          <div class="grupo-form"><label>Estado *</label><input type="text" name="estado" maxlength="2"></div>
+          <div class="grupo-form"><label>Cidade *</label><input type="text" name="cidade"></div>
+        </div>
+        <div class="linha-form duas">
+          <div class="grupo-form"><label>Bairro *</label><input type="text" name="bairro"></div>
+          <div class="grupo-form"><label>Rua *</label><input type="text" name="rua"></div>
+        </div>
+        <div class="linha-form duas">
+          <div class="grupo-form"><label>Número *</label><input type="text" name="numero"></div>
+          <div class="grupo-form"><label>Complemento</label><input type="text" name="complemento"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloco-form">
+      <h3><span class="num">3</span> Forma de pagamento</h3>
+      <div class="opcoes-pagamento" id="opcoes-pagamento">
+        <label class="opcao-card selecionada" data-metodo="pix">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div><strong>Pix</strong><span>Aprovação instantânea</span></div>
+          <input type="radio" name="formaPagamento" value="pix" checked style="display:none">
+        </label>
+        <label class="opcao-card" data-metodo="cartao">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+          <div><strong>Cartão</strong><span>Crédito, parcelado</span></div>
+          <input type="radio" name="formaPagamento" value="cartao" style="display:none">
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primario btn-bloco" id="btn-continuar-pagamento" style="padding:16px">Continuar para pagamento</button>
+  </form>
+
+  <aside class="resumo-pedido">
+    <h3>Seu pedido</h3>
+    <div id="resumo-itens-checkout"></div>
+    <div class="resumo-linha"><span>Subtotal</span><span id="checkout-subtotal">R$ 0,00</span></div>
+    <div class="resumo-linha"><span>Entrega</span><span id="checkout-frete">Grátis</span></div>
+    <div class="resumo-linha total"><span>Total</span><span id="checkout-total">R$ 0,00</span></div>
+  </aside>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

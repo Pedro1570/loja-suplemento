@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Conta — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="container pagina-conta">
+  <aside class="menu-conta">
+    <a href="#" data-tab="pedidos" class="ativo">Meus pedidos</a>
+    <a href="#" data-tab="dados">Meus dados</a>
+    <a href="#" data-tab="senha">Alterar senha</a>
+    <a href="#" id="link-sair" style="color:var(--vermelho)">Sair</a>
+  </aside>
+
+  <div>
+    <div id="tab-pedidos">
+      <h2 style="font-family:var(--fonte-display);margin-bottom:16px">Meus pedidos</h2>
+      <div style="overflow-x:auto">
+        <table class="tabela-pedidos">
+          <thead><tr><th>Pedido</th><th>Data</th><th>Total</th><th>Status</th><th></th></tr></thead>
+          <tbody id="corpo-tabela-pedidos"></tbody>
+        </table>
+      </div>
+      <div id="detalhe-pedido" class="mt-3"></div>
+    </div>
+
+    <div id="tab-dados" class="hidden">
+      <h2 style="font-family:var(--fonte-display);margin-bottom:16px">Meus dados</h2>
+      <div class="bloco-form" id="dados-cliente"></div>
+    </div>
+
+    <div id="tab-senha" class="hidden">
+      <h2 style="font-family:var(--fonte-display);margin-bottom:16px">Alterar senha</h2>
+      <div class="bloco-form">
+        <div id="msg-senha"></div>
+        <form id="form-senha">
+          <div class="grupo-form"><label>Senha atual</label><input type="password" name="senhaAtual" required></div>
+          <div class="grupo-form"><label>Nova senha</label><input type="password" name="novaSenha" minlength="6" required></div>
+          <button type="submit" class="btn btn-primario">Salvar nova senha</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script src="js/minha-conta.js"></script>
+</body>
+</html>

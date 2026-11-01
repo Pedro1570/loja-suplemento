@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrinho — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="container">
+  <h1 style="font-family:var(--fonte-display);font-size:1.5rem;margin:30px 0 0">Seu carrinho</h1>
+</div>
+
+<div class="container pagina-carrinho">
+  <div id="lista-carrinho"></div>
+  <aside class="resumo-pedido">
+    <h3>Resumo do pedido</h3>
+    <div class="resumo-linha"><span>Subtotal</span><span id="resumo-subtotal">R$ 0,00</span></div>
+    <div class="resumo-linha"><span>Frete</span><span>Calculado no checkout</span></div>
+    <div class="resumo-linha total"><span>Total</span><span id="resumo-total">R$ 0,00</span></div>
+    <a href="checkout.html" class="btn btn-primario btn-bloco mt-3" id="btn-finalizar">Finalizar pedido</a>
+    <a href="produtos.html" class="btn btn-secundario btn-bloco mt-2">Continuar comprando</a>
+  </aside>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script src="js/carrinho.js"></script>
+</body>
+</html>

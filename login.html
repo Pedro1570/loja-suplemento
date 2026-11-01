@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="card-auth" id="card-login">
+  <h1>Entrar</h1>
+  <p class="sub">Acesse sua conta para acompanhar seus pedidos.</p>
+  <div id="msg-login"></div>
+  <form id="form-login">
+    <div class="grupo-form"><label>E-mail</label><input type="email" name="email" required></div>
+    <div class="grupo-form"><label>Senha</label><input type="password" name="senha" required></div>
+    <button type="submit" class="btn btn-primario btn-bloco" style="padding:14px">Entrar</button>
+  </form>
+  <p class="link-alt">Não tem conta? <a href="#" id="link-ir-cadastro">Criar conta</a></p>
+</div>
+
+<div class="card-auth hidden" id="card-cadastro">
+  <h1>Criar conta</h1>
+  <p class="sub">Leva menos de um minuto.</p>
+  <div id="msg-cadastro"></div>
+  <form id="form-cadastro">
+    <div class="grupo-form"><label>Nome completo</label><input type="text" name="nome" required></div>
+    <div class="grupo-form"><label>E-mail</label><input type="email" name="email" required></div>
+    <div class="grupo-form"><label>Telefone</label><input type="tel" name="telefone"></div>
+    <div class="grupo-form"><label>Senha (mín. 6 caracteres)</label><input type="password" name="senha" minlength="6" required></div>
+    <button type="submit" class="btn btn-primario btn-bloco" style="padding:14px">Criar conta</button>
+  </form>
+  <p class="link-alt">Já tem conta? <a href="#" id="link-ir-login">Entrar</a></p>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

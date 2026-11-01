@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos — Painel Administrativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topo">
+      <h1>Produtos</h1>
+      <button class="btn btn-primario" id="btn-novo-produto">+ Novo produto</button>
+    </div>
+
+    <div class="barra-acoes-admin">
+      <div class="filtros-inline">
+        <input type="search" class="input-admin" id="busca-produto-admin" placeholder="Buscar produto...">
+        <select class="input-admin" id="filtro-categoria-admin"><option value="">Todas categorias</option></select>
+      </div>
+    </div>
+
+    <div class="painel">
+      <table class="tabela-admin">
+        <thead><tr><th></th><th>Produto</th><th>SKU</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead>
+        <tbody id="tabela-produtos-admin"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modal-produto">
+  <div class="modal-box">
+    <h2 id="titulo-modal-produto">Novo produto</h2>
+    <form id="form-produto">
+      <input type="hidden" id="produto-id">
+      <div class="linha-form duas">
+        <div class="grupo-form"><label>Nome *</label><input type="text" id="produto-nome" required></div>
+        <div class="grupo-form"><label>SKU *</label><input type="text" id="produto-sku" required></div>
+      </div>
+      <div class="linha-form duas">
+        <div class="grupo-form"><label>Categoria</label><select id="produto-categoria"></select></div>
+        <div class="grupo-form"><label>Marca</label><select id="produto-marca"></select></div>
+      </div>
+      <div class="grupo-form"><label>Descrição</label><textarea id="produto-descricao" rows="3"></textarea></div>
+      <div class="grupo-form"><label>Informações nutricionais</label><textarea id="produto-nutricao" rows="2"></textarea></div>
+      <div class="linha-form tres">
+        <div class="grupo-form"><label>Preço *</label><input type="number" step="0.01" id="produto-preco" required></div>
+        <div class="grupo-form"><label>Preço promocional</label><input type="number" step="0.01" id="produto-preco-promo"></div>
+        <div class="grupo-form"><label>Peso/variação</label><input type="text" id="produto-peso" placeholder="Ex: 900g"></div>
+      </div>
+      <div class="linha-form duas">
+        <div class="grupo-form"><label>Estoque *</label><input type="number" id="produto-estoque" required></div>
+        <div class="grupo-form"><label>Estoque mínimo</label><input type="number" id="produto-estoque-minimo" value="5"></div>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <button type="submit" class="btn btn-primario">Salvar produto</button>
+        <button type="button" class="btn btn-secundario" id="btn-cancelar-produto">Cancelar</button>
+      </div>
+    </form>
+
+    <div id="bloco-imagem-produto" class="mt-3 hidden" style="border-top:1px solid var(--grafite-borda);padding-top:18px">
+      <h3 style="font-size:0.95rem;margin-bottom:12px">Foto do produto</h3>
+      <div class="flex gap-2 items-center mb-2">
+        <img id="preview-imagem-produto" src="" alt="" style="width:70px;height:70px;object-fit:cover;border-radius:8px;background:var(--grafite-claro);display:none">
+      </div>
+      <div class="grupo-form">
+        <input type="file" id="produto-imagem-arquivo" accept=".jpg,.jpeg,.png,.webp">
+      </div>
+      <p class="txt-cinza mb-1" style="font-size:.78rem">A foto escolhida é enviada automaticamente ao clicar em "Salvar produto". Se preferir trocar a foto sem alterar o resto, use o botão abaixo.</p>
+      <button type="button" class="btn btn-secundario btn-sm" id="btn-upload-imagem-produto">Enviar foto agora</button>
+      <p id="msg-upload-imagem" class="mt-1" style="font-size:.8rem"></p>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/api.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="../../js/admin-common.js"></script>
+<script src="../../js/admin-produtos.js"></script>
+</body>
+</html>

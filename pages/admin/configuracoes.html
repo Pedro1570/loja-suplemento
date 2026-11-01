@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurações — Painel Administrativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topo"><h1>Configurações da loja</h1></div>
+    <div id="msg-config"></div>
+
+    <form id="form-config">
+      <div class="painel mb-3">
+        <h3>Dados gerais</h3>
+        <div class="linha-form duas">
+          <div class="grupo-form"><label>Nome da loja</label><input type="text" class="input-admin" id="cfg-nome_loja" style="width:100%"></div>
+          <div class="grupo-form"><label>Telefone</label><input type="text" class="input-admin" id="cfg-telefone" style="width:100%"></div>
+        </div>
+        <div class="linha-form duas">
+          <div class="grupo-form"><label>WhatsApp (com DDI, só números)</label><input type="text" class="input-admin" id="cfg-whatsapp" style="width:100%" placeholder="5595999990000"></div>
+          <div class="grupo-form"><label>Instagram</label><input type="text" class="input-admin" id="cfg-instagram" style="width:100%"></div>
+        </div>
+        <div class="grupo-form"><label>Endereço da loja</label><input type="text" class="input-admin" id="cfg-endereco_loja" style="width:100%"></div>
+        <div class="grupo-form"><label>Horário de funcionamento</label><input type="text" class="input-admin" id="cfg-horario_funcionamento" style="width:100%"></div>
+      </div>
+
+      <div class="painel mb-3">
+        <h3>Entrega e retirada</h3>
+        <div class="linha-form duas">
+          <div class="grupo-form"><label>Taxa de entrega (R$)</label><input type="number" step="0.01" class="input-admin" id="cfg-taxa_entrega" style="width:100%"></div>
+          <div class="grupo-form"><label>Prazo de retirada (horas)</label><input type="number" class="input-admin" id="cfg-prazo_retirada_horas" style="width:100%"></div>
+        </div>
+        <label class="filtro-opcao"><input type="checkbox" id="cfg-retirada_local_habilitada"> Habilitar retirada no local</label>
+        <label class="filtro-opcao"><input type="checkbox" id="cfg-entrega_habilitada"> Habilitar entrega</label>
+        <label class="filtro-opcao"><input type="checkbox" id="cfg-permitir_compra_visitante"> Permitir compra como visitante</label>
+      </div>
+
+      <div class="painel mb-3">
+        <h3>Pagamento</h3>
+        <p class="txt-cinza mb-2" style="font-size:.85rem">Modo atual: <strong id="badge-modo-gateway"></strong>. Altere para "produção" apenas após configurar as credenciais reais no arquivo <code>.env</code> do backend.</p>
+        <div class="grupo-form"><label>Chave Pix exibida no checkout (modo desenvolvimento)</label><input type="text" class="input-admin" id="cfg-pix_chave" style="width:100%"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primario">Salvar configurações</button>
+    </form>
+  </main>
+</div>
+
+<script src="../../js/api.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="../../js/admin-common.js"></script>
+<script src="../../js/admin-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="container pagina-catalogo">
+  <aside class="filtros">
+    <h3>Filtrar</h3>
+    <fieldset>
+      <legend>Categoria</legend>
+      <div id="filtro-categorias"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Marca</legend>
+      <div id="filtro-marcas"></div>
+    </fieldset>
+    <button class="btn btn-secundario btn-bloco btn-sm" id="btn-limpar-filtros">Limpar filtros</button>
+  </aside>
+
+  <div>
+    <div class="catalogo__topo">
+      <div>
+        <h1 style="font-family:var(--fonte-display);font-size:1.5rem" id="titulo-catalogo">Todos os produtos</h1>
+        <p class="txt-cinza" id="contagem-resultados" style="font-size:.85rem"></p>
+      </div>
+      <select class="select-ordenar" id="select-ordenar">
+        <option value="mais_recentes">Mais recentes</option>
+        <option value="mais_vendidos">Mais vendidos</option>
+        <option value="melhor_avaliacao">Melhor avaliação</option>
+        <option value="menor_preco">Menor preço</option>
+        <option value="maior_preco">Maior preço</option>
+      </select>
+    </div>
+    <div class="grid-produtos" id="grid-catalogo"></div>
+    <div class="paginacao" id="paginacao"></div>
+  </div>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/produtos.js"></script>
+</body>
+</html>

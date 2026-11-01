@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido confirmado — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" id="ps-header"></header>
+
+<div class="confirmacao" id="conteudo-confirmacao">
+  <div class="spinner" style="margin:60px auto"></div>
+</div>
+
+<footer class="footer" id="ps-footer"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  await iniciarLayout('');
+  const numero = new URLSearchParams(window.location.search).get('numero');
+  if (!numero) { window.location.href = 'index.html'; return; }
+
+  try {
+    const { pedido } = await Api.get(`/pedidos/rastrear/${encodeURIComponent(numero)}`, opcoesPedido(numero));
+    const pago = !['aguardando_pagamento', 'cancelado', 'expirado'].includes(pedido.status);
+    const titulo = pago ? 'Pedido realizado com sucesso!'
+      : pedido.status === 'aguardando_pagamento' ? 'Pedido recebido — aguardando pagamento'
+        : pedido.status === 'expirado' ? 'Pedido expirado' : 'Pedido cancelado';
+    const aviso = pago ? 'Guarde o número do seu pedido para acompanhar o status.'
+      : pedido.status === 'aguardando_pagamento' ? 'Seu pagamento ainda não foi confirmado.'
+        : 'Este pedido não está mais ativo. Faça um novo pedido para comprar.';
+    const numeroWhats = encodeURIComponent(String(CONFIG_LOJA.whatsapp || '').replace(/\D/g, ''));
+    const textoWhats = encodeURIComponent(`Olá! Gostaria de falar sobre o meu pedido ${pedido.numero_pedido}.`);
+
+    document.getElementById('conteudo-confirmacao').innerHTML = `
+      <div class="confirmacao__icone">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h1>${esc(titulo)}</h1>
+      <p class="txt-cinza">${esc(aviso)}</p>
+      ${pedido.status === 'aguardando_pagamento' ? `<p><a class="btn btn-primario" href="pagamento.html?pedido=${encodeURIComponent(pedido.numero_pedido)}&metodo=${encodeURIComponent(pedido.forma_pagamento)}">Ir para o pagamento</a></p>` : ''}
+
+      <div class="resumo-confirmacao">
+        <div class="resumo-linha"><span>Número do pedido</span><strong>${esc(pedido.numero_pedido)}</strong></div>
+        <div class="resumo-linha"><span>Data</span><span>${formatarData(pedido.criado_em)}</span></div>
+        <div class="resumo-linha"><span>Forma de pagamento</span><span>${pedido.forma_pagamento === 'pix' ? 'Pix' : 'Cartão'}</span></div>
+        <div class="resumo-linha"><span>Recebimento</span><span>${pedido.tipo_recebimento === 'retirada' ? 'Retirada no local' : 'Entrega'}</span></div>
+        <div class="resumo-linha"><span>Status</span><span class="badge badge-status">${esc(rotuloStatus(pedido.status))}</span></div>
+        <hr style="border-color:var(--grafite-borda);margin:14px 0">
+        ${pedido.itens.map((i) => `<div class="resumo-linha"><span>${Number(i.quantidade)}x ${esc(i.produto_nome)}${i.sabor ? ` (${esc(i.sabor)})` : ''}</span><span>${formatarPreco(i.subtotal)}</span></div>`).join('')}
+        <div class="resumo-linha total"><span>Total</span><span>${formatarPreco(pedido.total)}</span></div>
+      </div>
+
+      <div class="flex gap-2 justify-center" style="flex-wrap:wrap">
+        <a href="https://wa.me/${numeroWhats}?text=${textoWhats}" target="_blank" rel="noopener" class="btn btn-primario">Falar sobre meu pedido</a>
+        <a href="produtos.html" class="btn btn-secundario">Continuar comprando</a>
+      </div>
+    `;
+  } catch (e) {
+    document.getElementById('conteudo-confirmacao').innerHTML = `<p class="badge-erro">Pedido não encontrado.</p>`;
+  }
+});
+</script>
+</body>
+</html>

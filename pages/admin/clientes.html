@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clientes — Painel Administrativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topo"><h1>Clientes</h1></div>
+    <div class="painel">
+      <table class="tabela-admin">
+        <thead><tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Cadastro</th><th>Pedidos</th><th>Total gasto</th></tr></thead>
+        <tbody id="tabela-clientes-admin"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="../../js/api.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="../../js/admin-common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const usuario = await iniciarAdmin('clientes');
+  if (!usuario) return;
+
+  const { clientes } = await Api.get('/clientes/admin/todos', { tokenAdmin: true });
+  document.getElementById('tabela-clientes-admin').innerHTML = clientes.map((c) => `
+    <tr>
+      <td>${esc(c.nome)}</td>
+      <td>${esc(c.email)}</td>
+      <td>${esc(c.telefone || '-')}</td>
+      <td>${formatarData(c.criado_em)}</td>
+      <td>${Number(c.total_pedidos)}</td>
+      <td>${formatarPreco(c.total_gasto)}</td>
+    </tr>`).join('') || '<tr><td colspan="6" class="txt-cinza text-center">Nenhum cliente cadastrado ainda.</td></tr>';
+});
+</script>
+</body>
+</html>

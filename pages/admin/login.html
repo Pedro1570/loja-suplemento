@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo — PowerSupps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+<div class="login-admin-wrap">
+  <div class="card-auth">
+    <h1>Painel Administrativo</h1>
+    <p class="sub">Acesso restrito a usuários autorizados.</p>
+    <div id="msg-login-admin"></div>
+    <form id="form-login-admin">
+      <div class="grupo-form"><label>E-mail</label><input type="email" name="email" required></div>
+      <div class="grupo-form"><label>Senha</label><input type="password" name="senha" required></div>
+      <button type="submit" class="btn btn-primario btn-bloco" style="padding:14px">Entrar</button>
+    </form>
+    <p class="link-alt"><a href="../../index.html">← Voltar para a loja</a></p>
+  </div>
+</div>
+
+<script src="../../js/api.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('ps_token_admin')) { window.location.href = 'index.html'; return; }
+  document.getElementById('form-login-admin').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const dados = Object.fromEntries(new FormData(ev.target));
+    try {
+      const { token } = await Api.post('/auth/usuarios/login', dados);
+      localStorage.setItem('ps_token_admin', token);
+      window.location.href = 'index.html';
+    } catch (e) {
+      document.getElementById('msg-login-admin').innerHTML = `<div class="mensagem-erro">${esc(e.message)}</div>`;
+    }
+  });
+});
+</script>
+</body>
+</html>
