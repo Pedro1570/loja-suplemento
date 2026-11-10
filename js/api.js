@@ -4,7 +4,7 @@
  */
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:3001/api'
-  : '/api'; // em produção, ajuste para a URL pública da API
+  : 'https://api.cad-astro.com/api'; 
 
 // Origem do backend sem o "/api" no final — usada para montar a URL
 // completa de imagens enviadas (ex: /uploads/arquivo.jpg), já que o

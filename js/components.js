@@ -128,7 +128,7 @@ function montarBottomNav(paginaAtiva) {
 
 function montarWhatsapp(mensagem) {
   if (document.getElementById('ps-whatsapp')) return;
-  const numero = CONFIG_LOJA.whatsapp || '5595999990000';
+  const numero = CONFIG_LOJA.whatsapp || '5595991775642';
   const texto = encodeURIComponent(mensagem || `Olá! Vim pelo site da ${CONFIG_LOJA.nome_loja || 'loja'} e gostaria de mais informações.`);
   const a = document.createElement('a');
   a.id = 'ps-whatsapp';
